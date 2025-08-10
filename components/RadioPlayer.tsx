@@ -11,7 +11,7 @@ const RadioPlayer = () => {
 	const [volume, setVolume] = useState(0.6)
 
 	return (
-		<div className='flex justify-center m-8'>
+		<div className='flex justify-center'>
 			<StreamProvider playing={playing} volume={volume} />
 			<WaveAnimation playing={playing}>
 				<div className='relative' onDragStart={(e) => e.preventDefault()}>

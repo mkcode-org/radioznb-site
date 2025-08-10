@@ -21,7 +21,6 @@ const StreamProvider: FC<{ playing: PlayerState; volume: number }> = ({
 		}
 	}, [playing, volume])
 
-	if (playing !== 'playing') return null
 	return <audio ref={ref} autoPlay src={url} />
 }
 

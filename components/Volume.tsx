@@ -43,7 +43,7 @@ const Volume: FC<{ volume: number; setVolume: (arg: number) => void }> = ({
 	}
 
 	return (
-		<div className='absolute bottom-[10%] w-2/5 h-[2%] right-[15%]'>
+		<div className='absolute max-md:hidden bottom-[10%] w-2/5 h-[2%] right-[15%]'>
 			<div className='relative w-full h-full' ref={sliderRef}>
 				<Image
 					fill
