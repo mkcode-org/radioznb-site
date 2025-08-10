@@ -1,5 +1,9 @@
 import RadioPlayer from '@/components/RadioPlayer'
 
 export default function Home() {
-	return <RadioPlayer />
+	return (
+		<div className='fixed w-full'>
+			<RadioPlayer />
+		</div>
+	)
 }

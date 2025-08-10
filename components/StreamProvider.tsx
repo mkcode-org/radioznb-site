@@ -1,9 +1,28 @@
-import { FC } from 'react'
+'use client'
+
+import { FC, useEffect, useRef } from 'react'
 import { PlayerState } from './RadioPlayer'
 
-const StreamProvider: FC<{ playing: PlayerState }> = ({ playing }) => {
+const StreamProvider: FC<{ playing: PlayerState; volume: number }> = ({
+	playing,
+	volume,
+}) => {
+	const ref = useRef<HTMLAudioElement>(null)
+
+	useEffect(() => {
+		if (!ref.current) return
+		if (playing === 'playing') {
+			ref.current.volume = volume
+			ref.current
+				.play()
+				.catch((error) => console.error('Playback failed:', error))
+		} else {
+			ref.current.pause()
+		}
+	}, [playing, volume])
+
 	if (playing !== 'playing') return null
-	return <audio autoPlay src={url} />
+	return <audio ref={ref} autoPlay src={url} />
 }
 
 const url = 'https://radiopotok1.ru/orfej'
