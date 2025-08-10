@@ -13,23 +13,37 @@ const RadioPlayer = () => {
 			<StreamProvider playing={playing} />
 			<WaveAnimation playing={playing}>
 				<div className='relative'>
-					<Image src='/assets/RADIO.jpg' alt='radio' width={602} height={602} />
+					<Image
+						className='size-full'
+						src='/assets/RADIO.jpg'
+						alt='radio'
+						width={1061}
+						height={1000}
+					/>
 					<button
 						onClick={() => setPlaying('playing')}
-						className={`absolute cursor-pointer left-5/11 w-1/6 h-1/5 bottom-1/6 hover:opacity-50 ${
+						className={`absolute cursor-pointer bottom-1/5 left-5/11 w-1/6 h-1/5 hover:opacity-50 ${
 							playing === 'playing' && 'opacity-50'
 						}`}
 					>
-						<Image fill src='/assets/play-sm.jpg' alt='play' />
+						<Image fill src='/assets/play-sm.jpg' alt='play' sizes='10vw' />
 					</button>
 					<button
 						onClick={() => setPlaying('stopped')}
-						className={`absolute cursor-pointer right-1/7 w-1/6 h-1/5 bottom-1/6 hover:opacity-50 ${
+						className={`absolute cursor-pointer bottom-1/5 right-1/7 w-1/6 h-1/5 hover:opacity-50 ${
 							playing === 'stopped' && 'opacity-50'
 						}`}
 					>
-						<Image fill src='/assets/stop-sm.jpg' alt='stop' />
+						<Image fill src='/assets/stop-sm.jpg' alt='stop' sizes='10vw' />
 					</button>
+					{/* <div className='absolute h-1/10 w-2/5 bottom-16 right-0'>
+						<Image
+							className=''
+							src='/assets/scale.jpg'
+							alt='volume-scale'
+							fill
+						/>
+					</div> */}
 				</div>
 			</WaveAnimation>
 		</div>

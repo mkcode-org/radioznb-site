@@ -24,7 +24,7 @@ const WaveAnimation: FC<PropsWithChildren & { playing: PlayerState }> = ({
 
 	if (playing !== 'playing') return children
 	return (
-		<div className='relative inline-block'>
+		<div className='relative'>
 			<WavesLeft src={src.left} />
 			{children}
 			<WavesRight src={src.right} />
@@ -34,24 +34,24 @@ const WaveAnimation: FC<PropsWithChildren & { playing: PlayerState }> = ({
 
 const WavesLeft: FC<{ src: string[] }> = ({ src }) => {
 	return (
-		<div className='absolute -left-48 top-8/12 flex gap-6'>
+		<div className='absolute right-full h-1/2 w-1/2 top-2/5 flex gap-2 sm:gap-6 max-sm:hidden'>
 			<div
-				className={`animate-fadeInOut opacity-0 -translate-y-[30%]`}
+				className={`animate-fadeInOut relative opacity-0 h-full w-1/4`}
 				style={{ animationDelay: '500ms' }}
 			>
-				<Image src={src[0]} alt='wave-l-1' width={50} height={50} />
+				<Image src={src[0]} alt='wave-l-1' fill sizes='100vw' />
 			</div>
 			<div
-				className={`animate-fadeInOut opacity-0 -translate-y-[15%]`}
+				className={`animate-fadeInOut relative opacity-0 top-1/5 h-2/3 w-1/6`}
 				style={{ animationDelay: '250ms' }}
 			>
-				<Image src={src[1]} alt='wave-l-2' width={35} height={35} />
+				<Image src={src[1]} alt='wave-l-2' fill sizes='100vw' />
 			</div>
 			<div
-				className={`animate-fadeInOut opacity-0`}
+				className={`animate-fadeInOut relative opacity-0 top-2/5 h-2/5 w-1/8`}
 				style={{ animationDelay: '0ms' }}
 			>
-				<Image src={src[2]} alt='wave-l-3' width={20} height={20} />
+				<Image src={src[2]} alt='wave-l-3' fill sizes='100vw' />
 			</div>
 		</div>
 	)
@@ -59,24 +59,24 @@ const WavesLeft: FC<{ src: string[] }> = ({ src }) => {
 
 const WavesRight: FC<{ src: string[] }> = ({ src }) => {
 	return (
-		<div className='absolute -right-48 top-8/12 flex gap-6'>
+		<div className='absolute -right-3/5 h-1/2 w-1/2 top-2/5 flex gap-2 sm:gap-6 max-sm:hidden'>
 			<div
-				className={`animate-fadeInOut opacity-0`}
+				className={`animate-fadeInOut relative opacity-0 top-2/5 h-2/5 w-1/8`}
 				style={{ animationDelay: '0ms' }}
 			>
-				<Image src={src[0]} alt='wave-r-1' width={20} height={20} />
+				<Image src={src[0]} alt='wave-r-1' fill />
 			</div>
 			<div
-				className={`animate-fadeInOut opacity-0 -translate-y-[15%]`}
+				className={`animate-fadeInOut relative opacity-0 top-1/5 h-2/3 w-1/6`}
 				style={{ animationDelay: '250ms' }}
 			>
-				<Image src={src[1]} alt='wave-r-2' width={35} height={35} />
+				<Image src={src[1]} alt='wave-r-2' fill />
 			</div>
 			<div
-				className={`animate-fadeInOut opacity-0 -translate-y-[30%]`}
+				className={`animate-fadeInOut relative opacity-0 h-full w-1/4`}
 				style={{ animationDelay: '500ms' }}
 			>
-				<Image src={src[2]} alt='wave-r-3' width={50} height={50} />
+				<Image src={src[2]} alt='wave-r-3' fill />
 			</div>
 		</div>
 	)
