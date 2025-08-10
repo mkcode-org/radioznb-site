@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 const Mobile = () => {
 	return (
-		<div className='flex flex-wrap gap-4 justify-around sm:justify-center'>
-			<div className='relative size-26 scale-y-90'>
+		<div className='flex flex-wrap gap-2 px-8 justify-around sm:justify-center'>
+			<div className='relative size-24 scale-y-90'>
 				<Image
 					src='/assets/fb.png'
 					fill
@@ -11,7 +11,7 @@ const Mobile = () => {
 					alt='fb'
 				/>
 			</div>
-			<div className='relative size-26 scale-y-90'>
+			<div className='relative size-24 scale-y-90'>
 				<Image
 					src='/assets/vk.png'
 					fill
@@ -19,7 +19,7 @@ const Mobile = () => {
 					alt='vk'
 				/>
 			</div>
-			<div className='relative size-26 scale-y-90'>
+			<div className='relative size-24 scale-y-90'>
 				<Image
 					src='/assets/m3u.png'
 					fill
@@ -27,7 +27,7 @@ const Mobile = () => {
 					alt='m3u'
 				/>
 			</div>
-			<div className='relative size-26 scale-y-90'>
+			<div className='relative size-24 scale-y-90'>
 				<Image
 					src='/assets/tg.png'
 					fill
@@ -35,7 +35,7 @@ const Mobile = () => {
 					alt='tg'
 				/>
 			</div>
-			<div className='relative w-full h-16 scale-y-125'>
+			<div className='relative w-full mt-2 h-16 scale-y-125'>
 				<Image
 					src='/assets/chat.png'
 					fill
