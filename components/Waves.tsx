@@ -39,19 +39,19 @@ const WavesLeft: FC<{ src: string[] }> = ({ src }) => {
 				className={`animate-fadeInOut opacity-0 -translate-y-[30%]`}
 				style={{ animationDelay: '500ms' }}
 			>
-				<Image src={src[0]} alt='' width={50} height={50} />
+				<Image src={src[0]} alt='wave-l-1' width={50} height={50} />
 			</div>
 			<div
 				className={`animate-fadeInOut opacity-0 -translate-y-[15%]`}
 				style={{ animationDelay: '250ms' }}
 			>
-				<Image src={src[1]} alt='' width={35} height={35} />
+				<Image src={src[1]} alt='wave-l-2' width={35} height={35} />
 			</div>
 			<div
 				className={`animate-fadeInOut opacity-0`}
 				style={{ animationDelay: '0ms' }}
 			>
-				<Image src={src[2]} alt='' width={20} height={20} />
+				<Image src={src[2]} alt='wave-l-3' width={20} height={20} />
 			</div>
 		</div>
 	)
@@ -64,19 +64,19 @@ const WavesRight: FC<{ src: string[] }> = ({ src }) => {
 				className={`animate-fadeInOut opacity-0`}
 				style={{ animationDelay: '0ms' }}
 			>
-				<Image src={src[0]} alt='' width={20} height={20} />
+				<Image src={src[0]} alt='wave-r-1' width={20} height={20} />
 			</div>
 			<div
 				className={`animate-fadeInOut opacity-0 -translate-y-[15%]`}
 				style={{ animationDelay: '250ms' }}
 			>
-				<Image src={src[1]} alt='' width={35} height={35} />
+				<Image src={src[1]} alt='wave-r-2' width={35} height={35} />
 			</div>
 			<div
 				className={`animate-fadeInOut opacity-0 -translate-y-[30%]`}
 				style={{ animationDelay: '500ms' }}
 			>
-				<Image src={src[2]} alt='' width={50} height={50} />
+				<Image src={src[2]} alt='wave-r-3' width={50} height={50} />
 			</div>
 		</div>
 	)
