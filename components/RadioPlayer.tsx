@@ -8,7 +8,7 @@ import WaveAnimation from './Waves'
 
 const RadioPlayer = () => {
 	const [playing, setPlaying] = useState<PlayerState>(undefined)
-	const [volume, setVolume] = useState(0.5)
+	const [volume, setVolume] = useState(0.6)
 
 	return (
 		<div className='flex justify-center m-8'>
