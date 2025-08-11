@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Mobile = () => {
 	return (
-		<div className='flex flex-wrap gap-2 px-8 justify-around sm:justify-center'>
+		<div className='flex flex-wrap sm:gap-4 px-8 justify-around sm:justify-center'>
 			<button className='relative size-24 scale-y-90'>
 				<Link href='https://www.facebook.com/radioznb' target='_blank'>
 					<Image
@@ -48,7 +48,7 @@ const Mobile = () => {
 				</Link>
 			</button>
 			<button className='relative w-full mt-2 h-18'>
-				<Link href='https://t.me/radiochata' target='_blank'>
+				<Link href='https://teleg.me/radiochata' target='_blank'>
 					<Image
 						src='/assets/chat.png'
 						fill
