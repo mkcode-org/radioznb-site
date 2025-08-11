@@ -30,6 +30,7 @@ const RadioPlayer = () => {
 						}`}
 					>
 						<Image
+							priority
 							width={151}
 							height={178}
 							src='/assets/play-sm.jpg'
@@ -43,6 +44,7 @@ const RadioPlayer = () => {
 						}`}
 					>
 						<Image
+							priority
 							width={157}
 							height={170}
 							src='/assets/stop-sm.jpg'
