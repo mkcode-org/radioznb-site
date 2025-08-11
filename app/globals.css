@@ -4,12 +4,14 @@ button {
 	cursor: pointer;
 }
 
-button:hover {
-	scale: 1.05;
-}
-
 button:active {
 	scale: 0.95;
+}
+
+@media (min-width: 640px) {
+	button:hover {
+		scale: 1.05;
+	}
 }
 
 @theme {
