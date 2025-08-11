@@ -15,7 +15,7 @@ const StreamProvider: FC<{ playing: PlayerState; volume: number }> = ({
 			ref.current.volume = volume
 			ref.current
 				.play()
-				.catch((error) => console.error('Playback failed:', error))
+				.catch((error) => console.warn('Playback failed:', error))
 		} else {
 			ref.current.pause()
 		}
