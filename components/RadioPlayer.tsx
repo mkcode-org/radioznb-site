@@ -25,7 +25,7 @@ const RadioPlayer = () => {
 					/>
 					<button
 						onClick={() => setPlaying('playing')}
-						className={`absolute cursor-pointer bottom-1/5 left-5/11 w-1/6 h-1/5 hover:scale-115 ${
+						className={`absolute cursor-pointer bottom-1/5 left-5/11 w-1/6 h-1/5 ${
 							playing === 'playing' && 'opacity-50'
 						}`}
 					>
@@ -38,7 +38,7 @@ const RadioPlayer = () => {
 					</button>
 					<button
 						onClick={() => setPlaying('stopped')}
-						className={`absolute cursor-pointer bottom-1/5 right-1/7 w-1/6 h-1/5 hover:scale-115 ${
+						className={`absolute cursor-pointer bottom-1/5 right-1/7 w-1/6 h-1/5 ${
 							playing === 'stopped' && 'opacity-50'
 						}`}
 					>

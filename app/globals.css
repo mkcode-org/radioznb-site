@@ -5,6 +5,18 @@ body {
 	width: 100dvw;
 }
 
+button {
+	cursor: pointer;
+}
+
+button:hover {
+	scale: 1.05;
+}
+
+button:active {
+	scale: 0.95;
+}
+
 @theme {
 	--animate-fadeInOut: fadeInOut 2s infinite;
 
