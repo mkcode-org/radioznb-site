@@ -45,7 +45,17 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
 		const audio = audioRef.current
 
-		const onTimeUpdate = () => setTimecode(audio.currentTime)
+		let last = 0
+		const interval = 1000
+
+		const onTimeUpdate = () => {
+			const now = performance.now()
+			if (now - last >= interval) {
+				last = now
+				setTimecode(audio.currentTime)
+			}
+		}
+
 		const onLoaded = () => {
 			setSrc(audio.src)
 			setDuration(isFinite(audio.duration) ? audio.duration : 0)
