@@ -25,6 +25,6 @@ export default function Home() {
 }
 
 const src1 =
-	'https://r0zpfsgakx.ufs.sh/f/ulX3r7DWQlCoinn55aycT7NmQ03sKSP189CItLujoaW5dnAg'
+	'https://r0zpfsgakx.ufs.sh/f/ulX3r7DWQlCohdkcRlTe9SCvjxXpVwWmEbTR8uZ2yFcKGLJs'
 const src2 =
-	'https://r0zpfsgakx.ufs.sh/f/ulX3r7DWQlCoHM5wopLsx3AlTQnUZVqHBegvDKa09CNL7kW6'
+	'https://r0zpfsgakx.ufs.sh/f/ulX3r7DWQlCoEqHiQh87Prs5SuYTCUpke2tV4XQBjazoqZL1'
