@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { PlayerContextProvider } from '@/components/Player/PlayerContext'
+import PlayerBar from '@/components/Player/Player'
 
 export default function RootLayout({
 	children,
@@ -8,7 +10,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body>{children}</body>
+			<body className='m-4'>
+				<PlayerContextProvider>
+					{children}
+					<PlayerBar />
+				</PlayerContextProvider>
+			</body>
 		</html>
 	)
 }
