@@ -8,15 +8,17 @@ const Page = () => {
 	return (
 		<div className='flex flex-col gap-4'>
 			<Link href={'/'}>назад со страницы Библиотека</Link>
-			<button onClick={() => play(src1)}>запись 1</button>
-			<button onClick={() => play(src2)}>запись 2</button>
+			<button onClick={() => play(beatles_src)}>
+				передача про битлз 20.07
+			</button>
+			<button onClick={() => play(tech_src)}>техвстреча 21.07</button>
 		</div>
 	)
 }
 
-const src1 =
-	'https://r0zpfsgakx.ufs.sh/f/ulX3r7DWQlCohdkcRlTe9SCvjxXpVwWmEbTR8uZ2yFcKGLJs'
-const src2 =
-	'https://r0zpfsgakx.ufs.sh/f/ulX3r7DWQlCoEqHiQh87Prs5SuYTCUpke2tV4XQBjazoqZL1'
+const beatles_src =
+	'https://r0zpfsgakx.ufs.sh/f/ulX3r7DWQlCorlxyWusQhVOCPI7AobXt2jy1uJ6lGdaHBg04'
+const tech_src =
+	'https://r0zpfsgakx.ufs.sh/f/ulX3r7DWQlCo1RosU9zBmFW5PUouC34HrbseOvEDTI8Gjakh'
 
 export default Page
