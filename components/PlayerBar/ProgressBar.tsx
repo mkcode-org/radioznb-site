@@ -1,7 +1,7 @@
 'use client'
 
 import { usePlayer } from './PlayerContext'
-import PlayerWavesAnimation from './Waves'
+import PlayerBarWavesAnimation from './Waves'
 
 const ProgressBar = () => {
 	const { timecode, duration, seek, isLive, isPlaying } = usePlayer()
@@ -9,7 +9,7 @@ const ProgressBar = () => {
 	if (isLive) {
 		return (
 			<div className='grow'>
-				<PlayerWavesAnimation playing={isPlaying} />
+				<PlayerBarWavesAnimation playing={isPlaying} />
 			</div>
 		)
 	}

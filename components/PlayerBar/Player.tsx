@@ -9,7 +9,7 @@ const PlayerBar = () => {
 	const { src, isPlaying, toggle, isLive, play } = usePlayer()
 	const icon = isPlaying ? 'stop' : 'play'
 
-  if (!src) return null
+	if (!src) return null
 	return (
 		<div className='fixed flex items-center justify-center bottom-16 left-4 right-4 h-16'>
 			<div className='flex max-w-3xl w-full border-black border-2 h-full p-4 gap-2'>

@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { FC, PropsWithChildren, useEffect, useState } from 'react'
 
-const PlayerWavesAnimation: FC<PropsWithChildren & { playing: boolean }> = ({
+const PlayerBarWavesAnimation: FC<PropsWithChildren & { playing: boolean }> = ({
 	children,
 	playing,
 }) => {
@@ -94,4 +94,4 @@ const waves = [
 
 type Wave = (typeof waves)[0]
 
-export default PlayerWavesAnimation
+export default PlayerBarWavesAnimation
