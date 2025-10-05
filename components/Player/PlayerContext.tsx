@@ -20,8 +20,6 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
 	const audioRef = useRef<HTMLAudioElement | null>(null)
 
-	console.log(src, isPlaying)
-
 	useEffect(() => {
 		const saved = getLocalStorageContext()
 
