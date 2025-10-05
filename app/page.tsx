@@ -1,18 +1,25 @@
 'use client'
 
-import { usePlayer } from '@/components/Player/PlayerContext'
+import { usePlayer } from '@/components/PlayerBar/PlayerContext'
+import RadioPlayer from '@/components/RadioPlayer'
 import Link from 'next/link'
 
 export default function Home() {
 	const { play } = usePlayer()
 
 	return (
-		<div className='flex flex-col justify-center items-center gap-4 m-4 h-full sm:m-8'>
-			<Link href={'/1'}>cтраница 1</Link>
-			<Link href={'/2'}>страница 2</Link>
-
-			<button onClick={() => play(src1)}>запись 1</button>
-			<button onClick={() => play(src2)}>запись 2</button>
+		<div className='flex flex-col justify-center items-center gap-4 h-full'>
+			<RadioPlayer />
+			<div className='flex flex-col w-full justify-center items-center gap-4'>
+				<div className='flex gap-4'>
+					<Link href={'/1'}>cтраница 1</Link>
+					<Link href={'/2'}>страница 2</Link>
+				</div>
+				<div className='flex gap-4'>
+					<button onClick={() => play(src1)}>запись 1</button>
+					<button onClick={() => play(src2)}>запись 2</button>
+				</div>
+			</div>
 		</div>
 	)
 }

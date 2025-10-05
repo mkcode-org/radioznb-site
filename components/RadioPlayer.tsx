@@ -1,18 +1,16 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
-import StreamProvider from './StreamProvider'
+import { orpheyStream } from './PlayerBar/Player'
+import { usePlayer } from './PlayerBar/PlayerContext'
 import Volume from './Volume'
 import WaveAnimation from './Waves'
 
 const RadioPlayer = () => {
-	const [playing, setPlaying] = useState<PlayerState>(undefined)
-	const [volume, setVolume] = useState(0.6)
+	const { isPlaying: playing, play, pause, volume, setVolume } = usePlayer()
 
 	return (
 		<div className='flex justify-center'>
-			<StreamProvider playing={playing} volume={volume} />
 			<WaveAnimation playing={playing}>
 				<div className='relative' onDragStart={(e) => e.preventDefault()}>
 					<Image
@@ -24,31 +22,15 @@ const RadioPlayer = () => {
 						height={1000}
 					/>
 					<button
-						onClick={() => setPlaying('playing')}
-						className={`absolute cursor-pointer bottom-1/5 left-5/11 w-1/6 h-1/5 ${
-							playing === 'playing' && 'opacity-50'
-						}`}
+						onClick={() => (playing ? pause() : play(orpheyStream, true))}
+						className={`absolute cursor-pointer bottom-1/5 left-3/5 w-1/6 h-1/5`}
 					>
 						<Image
 							priority
 							width={151}
 							height={178}
-							src='/assets/play-sm.jpg'
+							src={`/assets/${playing ? 'stop' : 'play'}-sm.jpg`}
 							alt='play'
-						/>
-					</button>
-					<button
-						onClick={() => setPlaying('stopped')}
-						className={`absolute cursor-pointer bottom-1/5 right-1/7 w-1/6 h-1/5 ${
-							playing === 'stopped' && 'opacity-50'
-						}`}
-					>
-						<Image
-							priority
-							width={157}
-							height={170}
-							src='/assets/stop-sm.jpg'
-							alt='stop'
 						/>
 					</button>
 					<Volume volume={volume} setVolume={setVolume} />

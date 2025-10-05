@@ -1,7 +1,7 @@
+import PlayerBar from '@/components/PlayerBar/Player'
+import { PlayerContextProvider } from '@/components/PlayerBar/PlayerContext'
 import type { Metadata } from 'next'
 import './globals.css'
-import { PlayerContextProvider } from '@/components/Player/PlayerContext'
-import PlayerBar from '@/components/Player/Player'
 
 export default function RootLayout({
 	children,

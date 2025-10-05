@@ -6,9 +6,10 @@ import ProgressBar from './ProgressBar'
 import VolumeBar from './VolumeBar'
 
 const PlayerBar = () => {
-	const { isPlaying, toggle, isLive, play } = usePlayer()
+	const { src, isPlaying, toggle, isLive, play } = usePlayer()
 	const icon = isPlaying ? 'stop' : 'play'
 
+  if (!src) return null
 	return (
 		<div className='fixed flex items-center justify-center bottom-16 left-4 right-4 h-16'>
 			<div className='flex max-w-3xl w-full border-black border-2 h-full p-4 gap-2'>
@@ -37,6 +38,6 @@ const PlayerBar = () => {
 	)
 }
 
-const orpheyStream = 'https://radiopotok1.ru/orfej'
+export const orpheyStream = 'https://radiopotok1.ru/orfej'
 
 export default PlayerBar

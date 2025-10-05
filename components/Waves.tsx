@@ -2,9 +2,8 @@
 
 import Image from 'next/image'
 import { FC, PropsWithChildren, useEffect, useState } from 'react'
-import { PlayerState } from './RadioPlayer'
 
-const WaveAnimation: FC<PropsWithChildren & { playing: PlayerState }> = ({
+const WaveAnimation: FC<PropsWithChildren & { playing: boolean }> = ({
 	children,
 	playing,
 }) => {
@@ -22,7 +21,7 @@ const WaveAnimation: FC<PropsWithChildren & { playing: PlayerState }> = ({
 		return () => clearInterval(interval)
 	}, [playing])
 
-	if (playing !== 'playing') return children
+	if (!playing) return children
 	return (
 		<div className='relative'>
 			<WavesLeft src={src.left} />
