@@ -60,7 +60,7 @@ const TapePlayer = () => {
 					alt='title-radio'
 				/>
 				<Image
-					className='absolute top-[23.5%] scale-x-90 scale-y-120 left-[39%] h-9 w-auto'
+					className='absolute top-[24.5%] scale-x-90 scale-y-120 sm:left-[40%] left-[40.5%] sm:h-8 h-7 w-auto'
 					src={`/assets/tape-player/toggle${isLive ? 'L' : 'R'}.png`}
 					width={1366}
 					height={768}
