@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import { Suspense } from 'react'
-import PageContent from './Content'
+import { Suspense } from "react";
+import PageContent from "./Content";
 
 const Page = () => {
-	return (
-		<Suspense>
-			<PageContent />
-		</Suspense>
-	)
-}
+  return (
+    <Suspense>
+      <PageContent />
+    </Suspense>
+  );
+};
 
-export default Page
+export default Page;

@@ -1,50 +1,54 @@
-'use client'
+"use client";
 
-import { usePlayer } from '@/components/PlayerContext'
-import { api } from '@/convex/_generated/api'
-import { Id } from '@/convex/_generated/dataModel'
-import { useQuery } from 'convex/react'
-import { FC, PropsWithChildren, useMemo } from 'react'
-import Recording from './Recording'
+import { usePlayer } from "@/components/PlayerContext";
+import { FC, PropsWithChildren } from "react";
+import { getPublishedRecordings } from "@/lib/actions";
+import { useQuery } from "@tanstack/react-query";
+import RecordingComponent from "./Recording";
 
-const Recordings: FC<{ programId: Id<'programs'> }> = ({ programId }) => {
-	const recordings = useQuery(api.recordings.list, {
-		id: programId,
-		status: 'published',
-	})
-	const { play } = usePlayer()
+const Recordings: FC<{ programId: string }> = ({ programId }) => {
+  const { data: recordings } = useQuery({
+    queryKey: ["recordings", programId],
+    queryFn: async () => {
+      const recs = await getPublishedRecordings();
+      return recs;
+    },
+  });
+  const { play } = usePlayer();
 
-	const sorted = useMemo(
-		() => recordings?.slice().sort((a, b) => b._creationTime - a._creationTime),
-		[recordings]
-	)
+  if (!recordings) return null;
+  const sorted = recordings
+    ?.slice()
+    .sort(
+      (a, b) => b.recordings.addedAt.valueOf() - a.recordings.addedAt.valueOf()
+    );
 
-	if (!sorted)
-		return (
-			<Container className='h-16 w-full animate-pulse opacity-50'>
-				загрузка...
-			</Container>
-		)
-	if (!sorted.length) return null
+  if (!sorted)
+    return (
+      <Container className="h-16 w-full animate-pulse opacity-50">
+        загрузка...
+      </Container>
+    );
+  if (!sorted.length) return null;
 
-	return (
-		<Container>
-			{sorted.map((rec) => (
-				<Recording key={rec._id} rec={rec} play={play} />
-			))}
-		</Container>
-	)
-}
+  return (
+    <Container>
+      {sorted.map((rec) => (
+        <RecordingComponent key={rec.recordings.id} rec={rec} play={play} />
+      ))}
+    </Container>
+  );
+};
 
 const Container: FC<PropsWithChildren & { className?: string }> = ({
-	children,
-	className,
+  children,
+  className,
 }) => (
-	<div
-		className={`flex flex-col items-start bg-stone-700/50 text-white p-4 w-full ${className}`}
-	>
-		{children}
-	</div>
-)
+  <div
+    className={`flex flex-col items-start bg-stone-700/50 text-white p-4 w-full ${className}`}
+  >
+    {children}
+  </div>
+);
 
-export default Recordings
+export default Recordings;

@@ -1,61 +1,67 @@
-'use client'
+"use client";
 
-import HomeButton from '@/components/HomeButton'
-import { api } from '@/convex/_generated/api'
-import { useQuery } from 'convex/react'
-import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useMemo } from 'react'
-import Program from './Program'
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import Program from "./Program";
+import { useQuery } from "@tanstack/react-query";
+import { getPrograms } from "@/lib/actions";
+import HomeButton from "@/components/HomeButton";
 
 const PageContent = () => {
-	const programs = useQuery(api.programs.list)
-	const searchParams = useSearchParams()
-	const router = useRouter()
-	const slug = searchParams.get('program')
+  const {
+    data: programs,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["programs"],
+    queryFn: getPrograms,
+  });
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const slug = searchParams.get("program");
 
-	const selectedProgram = useMemo(
-		() => programs?.find((p) => p.slug === slug),
-		[programs, slug]
-	)
+  if (isLoading) return <div>loading...</div>;
+  if (isError || !programs || !programs) return <div>error</div>;
 
-	const handleSearch = (slug: string) => {
-		const params = new URLSearchParams(searchParams.toString())
-		params.set('program', slug)
-		router.push(`?${params.toString()}`)
-	}
+  const selectedProgram = programs.data?.find((p) => p.slug === slug);
 
-	return (
-		<div className='flex flex-col gap-4'>
-			<HomeButton />
-			<div className='flex gap-4'>
-				<Link
-					href={'/library'}
-					className={`sm:hidden flex select-none text-4xl items-center text-center justify-center size-16 ${selectedProgram ? 'block' : 'hidden'}`}
-				>
-					{'◀'}
-				</Link>
-				<div
-					className={`flex flex-col gap-2 items-start min-w-1/3 ${selectedProgram ? 'max-sm:hidden' : ''}`}
-				>
-					<div className={`flex flex-col gap-2 items-start min-w-1/3`}>
-						{programs?.map(({ _id, name, slug }) => (
-							<button
-								key={_id}
-								onClick={() => handleSearch(slug!)}
-								className={`hover:underline text-left ${
-									selectedProgram?._id === _id ? 'underline font-semibold' : ''
-								}`}
-							>
-								{name}
-							</button>
-						))}
-					</div>
-				</div>
-				<Program selectedProgram={selectedProgram} />
-			</div>
-		</div>
-	)
-}
+  const handleSearch = (slug: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("program", slug);
+    router.push(`?${params.toString()}`);
+  };
 
-export default PageContent
+  return (
+    <div className="flex flex-col gap-4">
+      <HomeButton />
+      <div className="flex gap-4">
+        <Link
+          href={"/library"}
+          className={`sm:hidden flex select-none text-4xl items-center text-center justify-center size-16 ${selectedProgram ? "block" : "hidden"}`}
+        >
+          {"◀"}
+        </Link>
+        <div
+          className={`flex flex-col gap-2 items-start min-w-1/3 ${selectedProgram ? "max-sm:hidden" : ""}`}
+        >
+          <div className={`flex flex-col gap-2 items-start min-w-1/3`}>
+            {programs.data?.map(({ id, name, slug }) => (
+              <button
+                key={id}
+                onClick={() => handleSearch(slug!)}
+                className={`hover:underline text-left ${
+                  selectedProgram?.id === id ? "underline font-semibold" : ""
+                }`}
+              >
+                {name}
+              </button>
+            ))}
+          </div>
+        </div>
+        <Program selectedProgram={selectedProgram} />
+      </div>
+    </div>
+  );
+};
+
+export default PageContent;

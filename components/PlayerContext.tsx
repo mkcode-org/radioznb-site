@@ -52,7 +52,6 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	useEffect(() => {
 		if (!audioRef.current) {
 			audioRef.current = new Audio()
-			audioRef.current.crossOrigin = 'anonymous'
 		}
 
 		const audio = audioRef.current

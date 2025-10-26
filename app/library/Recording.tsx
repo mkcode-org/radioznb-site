@@ -1,32 +1,27 @@
-import { api } from "@/convex/_generated/api";
-import { Doc } from "@/convex/_generated/dataModel";
-import { useQuery } from "convex/react";
+"use client";
 
-export default function Recording({
+import { Program, Recording } from "@/db/schema";
+
+export default function RecordingComponent({
   rec,
   play,
 }: {
-  rec: {
-    program: string;
-  } & Doc<"recordings">;
+  rec: { recordings: Recording; programs: Program | null };
   play: (props: { src: string; title: string }) => void;
 }) {
-  const url = useQuery(api.recordings.getAudioUrl, {
-    id: rec._id,
-  });
-  if (!url) return null;
+  if (!rec.recordings.fileUrl) return null;
   return (
     <button
-      key={rec._id}
+      key={rec.recordings.id}
       onClick={() => {
         play({
-          title: `${rec.program} – ${rec.episodeTitle}`,
-          src: url,
+          title: `${rec.programs?.name} – ${rec.recordings.episodeTitle}`,
+          src: rec.recordings.fileUrl,
         });
       }}
       className="text-left py-1 hover:underline"
     >
-      {rec.episodeTitle}
+      {rec.recordings.episodeTitle}
     </button>
   );
 }
