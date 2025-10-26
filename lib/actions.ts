@@ -507,6 +507,19 @@ export async function getRecordingsByProgramId(programId: string) {
   }
 }
 
+export async function getPublishedRecordingsByProgramId(programId: string) {
+  return await db
+    .select()
+    .from(recordings)
+    .where(
+      and(
+        eq(recordings.programId, programId),
+        eq(recordings.status, "published")
+      )
+    )
+    .leftJoin(programs, eq(recordings.programId, programs.id));
+}
+
 export async function getRecordingsByStatus(status: "published" | "hidden") {
   try {
     const statusRecordings = await db

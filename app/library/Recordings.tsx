@@ -2,7 +2,7 @@
 
 import { usePlayer } from "@/components/PlayerContext";
 import { FC, PropsWithChildren } from "react";
-import { getPublishedRecordings } from "@/lib/actions";
+import { getPublishedRecordingsByProgramId } from "@/lib/actions";
 import { useQuery } from "@tanstack/react-query";
 import RecordingComponent from "./Recording";
 
@@ -10,7 +10,7 @@ const Recordings: FC<{ programId: string }> = ({ programId }) => {
   const { data: recordings } = useQuery({
     queryKey: ["recordings", programId],
     queryFn: async () => {
-      const recs = await getPublishedRecordings();
+      const recs = await getPublishedRecordingsByProgramId(programId);
       return recs;
     },
   });
