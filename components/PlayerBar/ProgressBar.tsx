@@ -60,26 +60,30 @@ function LiveNowPlaying() {
   const hasSong = !!(songArtist || songTitle)
   const hasPlaylist = !!playlist
 
-  const hostOnAir =
-    livestream?.is_live &&
-    (livestream.streamer_name?.trim() || nowPlaying?.streamer?.trim())
-
-  if (hostOnAir) {
+  // While a live DJ is on air, AzuraCast keeps reporting the AutoDJ track in
+  // `now_playing` — that isn't what listeners hear, so never show it.
+  if (livestream?.is_live) {
     const host =
-      livestream?.streamer_name?.trim() || nowPlaying?.streamer?.trim()
+      livestream.streamer_name?.trim() || nowPlaying?.streamer?.trim()
+    if (!host) {
+      return (
+        <TitleRow>
+          <div className="line-clamp-1 text-xs text-pretty break-words uppercase sm:text-sm">
+            {title}
+          </div>
+        </TitleRow>
+      )
+    }
     return (
       <>
         <TitleRow>
-          {host ? (
-            <div className="line-clamp-1 text-xs font-semibold tracking-wide text-pretty break-words uppercase sm:text-sm">
-              {host}
-            </div>
-          ) : null}
+          <div className="line-clamp-1 text-xs font-semibold tracking-wide text-pretty break-words uppercase sm:text-sm">
+            {host}
+          </div>
         </TitleRow>
         <div className="line-clamp-1 text-[0.625rem] uppercase opacity-45 sm:text-xs">
           {title}
         </div>
-        {hasSong ? <SongCredits className="line-clamp-2" /> : null}
       </>
     )
   }

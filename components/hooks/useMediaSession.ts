@@ -6,7 +6,7 @@ import type { Livestream, NowPlayingTrack } from "./useLivestreamStatus"
 /**
  * Map live metadata to MediaMetadata for lock screen / Bluetooth / car displays.
  *
- * - Live with a streamer name: `title` = radio · host (nothing else).
+ * - A DJ on air: `title` = radio · host (nothing else — no AutoDJ track).
  * - Otherwise: `title` = radio · playlist, `artist` = artist — title (now playing).
  */
 function liveMediaFields(
@@ -18,15 +18,12 @@ function liveMediaFields(
   const playlist = nowPlaying?.playlist?.trim() ?? ""
   const songArtist = nowPlaying?.artist?.trim() ?? ""
   const songTitle = nowPlaying?.title?.trim() ?? ""
-  const streamer =
-    livestream?.is_live &&
-    (livestream.streamer_name?.trim() || nowPlaying?.streamer?.trim())
-      ? livestream.streamer_name?.trim() ||
-        nowPlaying?.streamer?.trim() ||
-        ""
-      : ""
+  const streamer = livestream?.is_live
+    ? livestream.streamer_name?.trim() || nowPlaying?.streamer?.trim() || ""
+    : ""
 
-  if (streamer) {
+  // On air: the AutoDJ track in `now_playing` is not what listeners hear.
+  if (livestream?.is_live) {
     const title = [radio, streamer].filter(Boolean).join(" · ")
     return { title, artist: "", album: "" }
   }
@@ -83,7 +80,11 @@ export function useMediaSessionSync(
       : archiveMediaFields(currentTitle, stationTitle)
 
     const artwork: MediaImage[] = []
-    const artUrl = isLive ? nowPlaying?.art || livestream?.art : undefined
+    const artUrl = isLive
+      ? livestream?.is_live
+        ? livestream.art
+        : nowPlaying?.art
+      : undefined
     if (artUrl) {
       artwork.push({
         src: artUrl,
